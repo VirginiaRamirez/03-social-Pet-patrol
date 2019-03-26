@@ -49,3 +49,38 @@ const enterAccount =()=> {
       });
 }
     document.querySelector(".btnLogIn").addEventListener("click",enterAccount);
+
+ const observer =()=> {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            console.log("existe usuario activo")
+            correctUser();
+          // User is signed in.
+          var displayName = user.displayName;
+          console.log(displayName);
+          var email = user.email;
+          console.log(email);          
+          var emailVerified = user.emailVerified;
+          console.log(emailVerified);
+          var photoURL = user.photoURL;
+          console.log(photoURL);
+          var isAnonymous = user.isAnonymous;
+          console.log(isAnonymous);
+          var uid = user.uid;
+          console.log(uid);
+          var providerData = user.providerData;
+          console.log(providerData);
+          // ...
+        } else {
+            console.log("no existe usuario activo")
+          // User is signed out.
+          // ...
+        }
+      });
+    }
+    observer();
+
+    const correctUser =()=> {
+        document.querySelector(".logInPage").style.display = "none";
+        document.querySelector(".insideFirstPage").style.display = "block";
+    }
