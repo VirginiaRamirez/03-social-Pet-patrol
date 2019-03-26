@@ -1,4 +1,4 @@
-//Sections ocultos
+//Sections ocultos desde el inicio
 document.querySelector(".insideFirstPage").style.display = "none";
 document.querySelector(".createAccountPage").style.display = "none";
 document.querySelector(".logInPage").style.display = "none";
@@ -24,7 +24,10 @@ const logIn =()=> {
 const createAccount =()=> {
     const email = document.querySelector(".createAccountEmail").value;
     const password = document.querySelector(".createAccountPassword").value;
-    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+    firebase.auth().createUserWithEmailAndPassword(email, password).then(function(){
+        verifyAccount()
+    })
+    .catch(function(error) {
         // Handle Errors here.
         let errorCode = error.code;
         let errorMessage = error.message;
@@ -35,7 +38,7 @@ const createAccount =()=> {
 }
     document.querySelector(".btnCreateAccount").addEventListener("click",createAccount);
 
-    //Función que guarda los valores de las cajas de texto de ingreso a cuenta existente
+//Función que guarda los valores de las cajas de texto de ingreso a cuenta existente
 const enterAccount =()=> {
     const emailLogIn = document.querySelector(".logInEmail").value;
     const passLogIn = document.querySelector(".logInPassword").value;
@@ -50,6 +53,7 @@ const enterAccount =()=> {
 }
     document.querySelector(".btnLogIn").addEventListener("click",enterAccount);
 
+//Con esta función se puede ver si un usuario está activo así como la info del mismo
  const observer =()=> {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
@@ -80,7 +84,30 @@ const enterAccount =()=> {
     }
     observer();
 
+//Con esta función se muestra al usuario que ingreso correctamente
     const correctUser =()=> {
         document.querySelector(".logInPage").style.display = "none";
         document.querySelector(".insideFirstPage").style.display = "block";
     }
+
+ //Con esta función se cierra sesión
+    const closeSession =()=> {
+        firebase.auth().signOut().then(function() {
+            // Sign-out successful.
+          }).catch(function(error) {
+            // An error happened.
+          });
+    }
+    document.querySelector(".btnLogOut").addEventListener("click", closeSession);
+
+//Con esta función se verifica la cuenta(envia correo para verificación)
+    const verifyAccount =()=> {  
+    var user = firebase.auth().currentUser;
+user.sendEmailVerification().then(function() {
+    console.log("Correo en camino");
+  // Email sent.
+}).catch(function(error) {
+    console.log(error);
+  // An error happened.
+});
+}
