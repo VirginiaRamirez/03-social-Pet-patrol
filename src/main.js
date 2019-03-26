@@ -26,11 +26,26 @@ const createAccount =()=> {
     const password = document.querySelector(".createAccountPassword").value;
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
         // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        let errorCode = error.code;
+        let errorMessage = error.message;
         alert(errorCode);
         alert(errorMessage);
         // ...
       });
 }
     document.querySelector(".btnCreateAccount").addEventListener("click",createAccount);
+
+    //Función que guarda los valores de las cajas de texto de ingreso a cuenta existente
+const enterAccount =()=> {
+    const emailLogIn = document.querySelector(".logInEmail").value;
+    const passLogIn = document.querySelector(".logInPassword").value;
+    firebase.auth().signInWithEmailAndPassword(emailLogIn, passLogIn).catch(function(error) {
+        // Handle Errors here.
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        alert(errorCode);
+        alert(errorMessage);
+        // ...
+      });
+}
+    document.querySelector(".btnLogIn").addEventListener("click",enterAccount);
