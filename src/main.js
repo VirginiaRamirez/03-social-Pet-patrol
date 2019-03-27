@@ -111,3 +111,13 @@ user.sendEmailVerification().then(function() {
   // An error happened.
 });
 }
+
+//Función que muestra la información de la pagina
+const whoWeAre =()=> {
+    document.querySelector(".aboutUs").style.display = "block";
+    document.querySelector(".insideFirstPage").style.display = "none";
+    document.querySelector(".createAccountPage").style.display = "none";
+    document.querySelector(".logInPage").style.display = "none";
+    document.querySelector(".welcomePage").style.display = "none";
+}
+document.querySelector(".pageInformation").addEventListener("click", whoWeAre);
