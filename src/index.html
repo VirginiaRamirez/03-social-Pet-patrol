@@ -1,72 +1,109 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="style.css">
-   <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyDm3cglN1xasEXFZ0OJ71e-q4LknJRdQQo",
-    authDomain: "pet-patrol-620c5.firebaseapp.com",
-    databaseURL: "https://pet-patrol-620c5.firebaseio.com",
-    projectId: "pet-patrol-620c5",
-    storageBucket: "pet-patrol-620c5.appspot.com",
-    messagingSenderId: "534848413649"
-  };
-  firebase.initializeApp(config);
-</script>
+  <meta charset="utf-8">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-messaging.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-functions.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDm3cglN1xasEXFZ0OJ71e-q4LknJRdQQo",
+      authDomain: "pet-patrol-620c5.firebaseapp.com",
+      databaseURL: "https://pet-patrol-620c5.firebaseio.com",
+      projectId: "pet-patrol-620c5",
+      storageBucket: "pet-patrol-620c5.appspot.com",
+      messagingSenderId: "534848413649"
+    };
+    firebase.initializeApp(config);
+
+    // Initialize Cloud Firestore through Firebase
+    //firestore aun no funciona
+    var db = firebase.firestore();
+    db.collection("users").add({
+      first: "Ada",
+      last: "Lovelace",
+      born: 1815
+    })
+      .then(function (docRef) {
+        console.log("Document written with ID: ", docRef.id);
+      })
+      .catch(function (error) {
+        console.error("Error adding document: ", error);
+      });
+
+  </script>
 </head>
-<body> 
+
+<body>
   <header>
     <h1>Pet Patrol</h1>
   </header>
-    <section Class = "welcomePage">
-        <img src="cats_dogs_trimmed_ppt_compress.png" class="welcomeImg"><br>
-        <button class = "createAccount">Create account </button>
-        <button class = "logIn">Log in</button>
-      <div id = "description"><p>-Publish and find your lost pets<br>-Locate the best adopter<br>-Discover your ideal Pet</p></div>
-    </section>
-    <section class = "createAccountPage">
+  <section Class="welcomePage">
+    <img src="cats_dogs_trimmed_ppt_compress.png" class="welcomeImg"><br>
+    <button class="createAccount">Create account </button>
+    <button class="logIn">Log in</button>
+    <div id="description">
+      <p>-Publish and find your lost pets<br>-Locate the best adopter<br>-Discover your ideal Pet</p>
+    </div>
+  </section>
+  <section class="createAccountPage">
 
-        <h3>User Registration</h3>
-      <label>Name</label><br>
-      <input class = "createAccountName" type ="text" placeholder = "Name"><br>
-      <label>Email</label><br>
-      <input class = "createAccountEmail" type = "text" placeholder = "youremail@domain.com"><br>
-      <label>Password</label><br>
-      <input class = "createAccountPassword" type= "password" placeholder = "Password"><br>
-      <button  class = "btnCreateAccount" >Send</button>
+    <h3>User Registration</h3>
+    <label>Name</label><br>
+    <input class="createAccountName" type="text" placeholder="Name"><br>
+    <label>Email</label><br>
+    <input class="createAccountEmail" type="text" placeholder="youremail@domain.com"><br>
+    <label>Password</label><br>
+    <input class="createAccountPassword" type="password" placeholder="Password"><br>
+    <button class="btnCreateAccount">Send</button>
+    <br><a href="#" onclick="window.location.reload(true);">Back to Home page</a>
+  </section>
+
+  <section class="logInPage">
+    <h3>User Login</h3>
+    <label>Email</label><br>
+    <input class="logInEmail" type="text" placeholder="Email"><br>
+    <label>password</label><br>
+    <input class="logInPassword" type="password" placeholder="Password"><br>
+    <button class="btnLogIn">Enter</button>
+    <br><a href="#" onclick="window.location.reload(true);">Back to Home page</a>
+  </section>
+
+  <section class="aboutUs">
+    <p>Pet Patrowl arises from the need for a social network specializing in the search
+      support of lost pets and pet placement that do not yet have a home</p>
+    <br><a href="#" onclick="window.location.reload(true);">Back to Home page</a>
+  </section>
+
+  <main class="insideFirstPage">
+    <p>Usuario registrado</p>
+    <button class="btnLogOut">Logout</button>
+    <br><a href="#" onclick="window.location.reload(true);">Back to Home page</a>
+    </section>
+
+    <section class="content">
+      <h1>Publish</h1>
+      <input type="text" class="textPublication" placeholder="Here your publication">
+      <button type="button" class="button">Share</button>
       <br><a href="#" onclick="window.location.reload(true);">Back to Home page</a>
     </section>
-
-    <section class = "logInPage">
-        <h3>User Login</h3>
-      <label>Email</label><br>
-      <input  class = "logInEmail" type = "text" placeholder = "Email"><br>
-      <label>password</label><br>
-      <input class = "logInPassword" type = "password" placeholder = "Password"><br>
-      <button class = "btnLogIn">Enter</button>
-      <br><a href="#" onclick="window.location.reload(true);">Back to Home page</a>
-    </section>
-
-    <section class = "aboutUs"><p>Pet Patrowl arises from the need for a social network specializing in the search 
-        support of lost pets and pet placement that do not yet have a home</p>
-      <br><a href="#" onclick="window.location.reload(true);">Back to Home page</a>
-    </section>
-
-    <main class="insideFirstPage">
-        <p>Usuario registrado</p>
-      <button class = "btnLogOut">Logout</button>
-      <br><a href="#" onclick="window.location.reload(true);">Back to Home page</a>
-    </section>
-    
   </main>
   <footer>
-    <a href="#" class = "pageInformation" ><p>Who We Are?</p></a>
+    <a href="#" class="pageInformation">
+      <p>Who We Are?</p>
+    </a>
   </footer>
   <script src="main.js"></script>
+
 </body>
+
 </html>

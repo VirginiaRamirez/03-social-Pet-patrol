@@ -88,6 +88,8 @@ const enterAccount =()=> {
     const correctUser =()=> {
         document.querySelector(".logInPage").style.display = "none";
         document.querySelector(".insideFirstPage").style.display = "block";
+        document.querySelector(".welcomePage").style.display = "none";
+        document.querySelector(".createAccountPage").style.display = "none";
     }
 
  //Con esta función se cierra sesión
@@ -121,3 +123,5 @@ const whoWeAre =()=> {
     document.querySelector(".welcomePage").style.display = "none";
 }
 document.querySelector(".pageInformation").addEventListener("click", whoWeAre);
+
+
